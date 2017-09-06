@@ -15,7 +15,7 @@ var node;
 
 var should = chai.should();
 
-var BitcoinRPC = require('quantumd-rpc');
+var BitcoinRPC = require('qtumd-rpc');
 var index = require('..');
 var Transaction = bitcore.Transaction;
 var BitcoreNode = index.Node;

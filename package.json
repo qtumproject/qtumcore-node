@@ -27,7 +27,7 @@
     }
   ],
   "bin": {
-    "bitcore-node": "./bin/qtumcore-node"
+    "qtumcore-node": "./bin/qtumcore-node"
   },
   "scripts": {
 

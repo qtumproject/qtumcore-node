@@ -27,8 +27,7 @@
     }
   ],
   "bin": {
-    "bitcore-node": "./bin/qtumcore-node",
-    "bitcoind": "./bin/bitcoind"
+    "bitcore-node": "./bin/qtumcore-node"
   },
   "scripts": {
 

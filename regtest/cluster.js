@@ -6,7 +6,7 @@ var spawn = require('child_process').spawn;
 
 var BitcoinRPC = require('quantumd-rpc');
 var rimraf = require('rimraf');
-var bitcore = require('bitcore-lib');
+var bitcore = require('qtumcore-lib');
 var chai = require('chai');
 var should = chai.should();
 

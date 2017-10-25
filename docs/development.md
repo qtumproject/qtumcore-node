@@ -10,22 +10,22 @@ nvm install v4
 
 ## Fork and Download Repositories
 
-To develop bitcore-node:
+To develop qtumcore-node:
 
 ```bash
 cd ~
-git clone git@github.com:<yourusername>/bitcore-node.git
-git clone git@github.com:<yourusername>/bitcore-lib.git
+git clone git@github.com:<yourusername>/qtumcore-node.git
+git clone git@github.com:<yourusername>/qtumcore-lib.git
 ```
 
-To develop bitcoin or to compile from source:
+To develop qtum or to compile from source:
 
 ```bash
-git clone git@github.com:<yourusername>/bitcoin.git
+git clone git@github.com:<yourusername>/qtumcoin.git
 git fetch origin <branchname>:<branchname>
 git checkout <branchname>
 ```
-**Note**: See bitcoin documentation for building bitcoin on your platform.
+**Note**: See qtum documentation for building qtum on your platform.
 
 
 ## Install Development Dependencies
@@ -51,22 +51,22 @@ npm install
 cd ../bitcore-node
 npm install
 ```
-**Note**: If you get a message about not being able to download bitcoin distribution, you'll need to compile qtumd from source, and setup your configuration to use that version.
+**Note**: If you get a message about not being able to download qtum distribution, you'll need to compile qtumd from source, and setup your configuration to use that version.
 
 
-We now will setup symlinks in `bitcore-node` *(repeat this for any other modules you're planning on developing)*:
+We now will setup symlinks in `qtumcore-node` *(repeat this for any other modules you're planning on developing)*:
 ```bash
 cd node_modules
-rm -rf bitcore-lib
-ln -s ~/bitcore-lib
+rm -rf qtumcore-lib
+ln -s ~/qtumcore-lib
 rm -rf qtumd-rpc
 ln -s ~/qtumd-rpc
 ```
 
-And if you're compiling or developing bitcoin:
+And if you're compiling or developing qtumcoin:
 ```bash
 cd ../bin
-ln -sf ~/bitcoin/src/qtumd
+ln -sf ~/qtum/src/qtumd
 ```
 
 ## Run Tests
@@ -78,7 +78,7 @@ npm install mocha -g
 
 To run all test suites:
 ```bash
-cd bitcore-node
+cd qtumcore-node
 npm run regtest
 npm run test
 ```
@@ -102,11 +102,11 @@ cd ~
 mkdir devnode
 cd devnode
 mkdir node_modules
-touch bitcore-node.json
+touch qtumcore-node.json
 touch package.json
 ```
 
-Edit `bitcore-node.json` with something similar to:
+Edit `qtumcore-node.json` with something similar to:
 ```json
 {
   "network": "livenet",
@@ -121,27 +121,27 @@ Edit `bitcore-node.json` with something similar to:
   "servicesConfig": {
     "qtumd": {
       "spawn": {
-        "datadir": "/home/<youruser>/.bitcoin",
-        "exec": "/home/<youruser>/bitcoin/src/qtumd"
+        "datadir": "/home/<youruser>/.qtum",
+        "exec": "/home/<youruser>/qtum/src/qtumd"
       }
     }
   }
 }
 ```
 
-**Note**: To install services [insight-api](https://github.com/bitpay/insight-api) and [insight-ui](https://github.com/bitpay/insight-ui) you'll need to clone the repositories locally.
+**Note**: To install services [qtum-insight-api](https://github.com/qtumproject/insight-api) and [qtum-explorer](https://github.com/qtumproject/qtum-explorer) you'll need to clone the repositories locally.
 
 Setup symlinks for all of the services and dependencies:
 
 ```bash
 cd node_modules
-ln -s ~/bitcore-lib
-ln -s ~/bitcore-node
-ln -s ~/insight-api
-ln -s ~/insight-ui
+ln -s ~/qtumcore-lib
+ln -s ~/qtumcore-node
+ln -s ~/qtum-insight-api
+ln -s ~/qtum-explorer
 ```
 
-Make sure that the `<datadir>/bitcoin.conf` has the necessary settings, for example:
+Make sure that the `<datadir>/qtum.conf` has the necessary settings, for example:
 ```
 server=1
 whitelist=127.0.0.1
@@ -152,11 +152,16 @@ spentindex=1
 zmqpubrawtx=tcp://127.0.0.1:28332
 zmqpubhashblock=tcp://127.0.0.1:28332
 rpcallowip=127.0.0.1
-rpcuser=bitcoin
-rpcpassword=local321
+rpcuser=user
+rpcpassword=password
+rpcport=18332
+reindex=1
+gen=0
+addrindex=1
+logevents=1
 ```
 
 From within the `devnode` directory with the configuration file, start the node:
 ```bash
-../bitcore-node/bin/bitcore-node start
+../qtumcore-node/bin/qtumcore-node start
 ```

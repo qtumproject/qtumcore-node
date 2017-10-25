@@ -14,8 +14,8 @@ A node represents a collection of services that are loaded together. For more in
 
 ```js
 
-var index = require('bitcore-node');
-var Bitcoin = index.services.Bitcoin;
+var index = require('qtumcore-node');
+var Qtum = index.services.Qtum;
 var Node = index.Node;
 
 var configuration = {
@@ -24,7 +24,7 @@ var configuration = {
   services: [
     {
       name: 'qtumd',
-      module: Bitcoin,
+      module: Qtum,
       config: {}
     }
   ]
@@ -37,7 +37,7 @@ node.start(function() {
 });
 
 node.on('ready', function() {
-  console.log('Bitcoin Node Ready');
+  console.log('Qtumcoin Node Ready');
 });
 
 node.on('error', function(err) {

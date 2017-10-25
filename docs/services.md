@@ -1,11 +1,11 @@
 # Services
-Bitcore Node has a service module system that can start up additional services that can include additional:
+qtumcore Node has a service module system that can start up additional services that can include additional:
 - Blockchain indexes (e.g. querying balances for addresses)
 - API methods
 - HTTP routes
 - Event types to publish and subscribe
 
-The `bitcore-node.json` file describes which services will load for a node:
+The `qtumcore-node.json` file describes which services will load for a node:
 
 ```json
 {
@@ -20,32 +20,32 @@ Services correspond with a Node.js module as described in 'package.json', for ex
 ```json
 {
   "dependencies": {
-    "bitcore-lib": "^0.13.7",
-    "bitcore-node": "^0.2.0",
-    "insight-api": "^3.0.0"
+    "qtumcore-lib": "^0.0.1",
+    "qtumcore-node": "^0.0.1",
+    "qtum-insight-api": "^0.0.1"
   }
 }
 ```
 
-_Note:_ If you already have a bitcore-node database, and you want to query data from previous blocks in the blockchain, you will need to reindex. Reindexing right now means deleting your bitcore-node database and resyncing.
+_Note:_ If you already have a qtumcore-node database, and you want to query data from previous blocks in the blockchain, you will need to reindex. Reindexing right now means deleting your qtumcore-node database and resyncing.
 
 ## Using Services Programmatically
 If, instead, you would like to run a custom node, you can include services by including them in your configuration object when initializing a new node.
 
 ```js
-//Require bitcore
-var bitcore = require('bitcore-node');
+//Require qtumcore
+var qtumcore = require('qtumcore-node');
 
 //Services
-var Bitcoin = bitcore.services.Bitcoin;
-var Web = bitcore.services.Web;
+var Qtum = qtumcore.services.Qtum;
+var Web = qtumcore.services.Web;
 
-var myNode = new bitcore.Node({
+var myNode = new qtumcore.Node({
   network: 'regtest',
   services: [
     {
       name: 'qtumd',
-      module: Bitcoin,
+      module: Qtum,
       config: {
         spawn: {
           datadir: '/home/<username>/.qtum',

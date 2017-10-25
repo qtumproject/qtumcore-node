@@ -1,17 +1,15 @@
-# Bitcoin Service
-
-The Bitcoin Service is a Node.js interface to [Bitcoin Core](https://github.com/bitcoin/bitcoin) for querying information about the bitcoin block chain. It will manage starting and stopping `qtumd` or connect to several running `qtumd` processes. It uses a branch of a [branch of Bitcoin Core](https://github.com/bitpay/bitcoin/tree/0.12.1-bitcore) with additional indexes for querying information about addresses and blocks. Results are cached for performance and there are several additional API methods added for common queries.
+# Qtumcoin Service
 
 ## Configuration
 
-The default configuration will include a "spawn" configuration in "qtumd". This defines the location of the block chain database and the location of the `qtumd` daemon executable. The below configuration points to a local clone of `bitcoin`, and will start `qtumd` automatically with your Node.js application.
+The default configuration will include a "spawn" configuration in "qtumd". This defines the location of the block chain database and the location of the `qtumd` daemon executable. The below configuration points to a local clone of `qtum`, and will start `qtumd` automatically with your Node.js application.
 
 ```json
   "servicesConfig": {
     "qtumd": {
       "spawn": {
-        "datadir": "/home/bitcore/.bitcoin",
-        "exec": "/home/bitcore/bitcoin/src/qtumd"
+        "datadir": "/home/user/.qtum",
+        "exec": "/home/user/qtum-core/src/qtumd"
       }
     }
   }
@@ -26,22 +24,22 @@ It's also possible to connect to separately managed `qtumd` processes with round
         {
           "rpchost": "127.0.0.1",
           "rpcport": 30521,
-          "rpcuser": "bitcoin",
-          "rpcpassword": "local321",
+          "rpcuser": "qtumuser1",
+          "rpcpassword": "qtumrpcpassword1",
           "zmqpubrawtx": "tcp://127.0.0.1:30611"
         },
         {
           "rpchost": "127.0.0.1",
           "rpcport": 30522,
-          "rpcuser": "bitcoin",
-          "rpcpassword": "local321",
+          "rpcuser": "qtumuser2",
+          "rpcpassword": "qtumrpcpassword2",
           "zmqpubrawtx": "tcp://127.0.0.1:30622"
         },
         {
           "rpchost": "127.0.0.1",
           "rpcport": 30523,
-          "rpcuser": "bitcoin",
-          "rpcpassword": "local321",
+          "rpcuser": "qtumuser3",
+          "rpcpassword": "qtumrpcpassword3",
           "zmqpubrawtx": "tcp://127.0.0.1:30633"
         }
       ]
@@ -110,7 +108,7 @@ node.services.qtumd.generateBlock(numberOfBlocks, function(err, blockHashes) {
 
 **Getting Block Information**
 
-It's possible to query blocks by both block hash and by height. Blocks are given as Node.js Buffers and can be parsed via Bitcore:
+It's possible to query blocks by both block hash and by height. Blocks are given as Node.js Buffers and can be parsed via qtumcore:
 
 ```js
 var blockHeight = 0;
@@ -118,11 +116,11 @@ node.services.qtumd.getRawBlock(blockHeight, function(err, blockBuffer) {
   if (err) {
     throw err;
   }
-  var block = bitcore.Block.fromBuffer(blockBuffer);
+  var block = qtumcore.Block.fromBuffer(blockBuffer);
   console.log(block);
 };
 
-// get a bitcore object of the block (as above)
+// get a qtumcore object of the block (as above)
 node.services.qtumd.getBlock(blockHash, function(err, block) {
   //...
 };
@@ -148,10 +146,10 @@ node.services.qtumd.getRawTransaction(txid, function(err, transactionBuffer) {
   if (err) {
     throw err;
   }
-  var transaction = bitcore.Transaction().fromBuffer(transactionBuffer);
+  var transaction = qtumcore.Transaction().fromBuffer(transactionBuffer);
 });
 
-// get a bitcore object of the transaction (as above)
+// get a qtumcore object of the transaction (as above)
 node.services.qtumd.getTransaction(txid, function(err, transaction) {
   //...
 });
@@ -217,7 +215,7 @@ node.services.qtumd.getAddressBalance(address, options, function(err, balance) {
 
 This method will give history of an address limited by a range of block heights by using the "start" and "end" arguments. The "start" value is the more recent, and greater, block height. The "end" value is the older, and lesser, block height. This feature is most useful for synchronization as previous history can be omitted. Furthermore for large ranges of block heights, results can be paginated by using the "from" and "to" arguments.
 
-If "queryMempool" is set as true (it is true by default), it will show unconfirmed transactions from the bitcoin mempool. However, if you specify "start" and "end", "queryMempool" is ignored and is always false.
+If "queryMempool" is set as true (it is true by default), it will show unconfirmed transactions from the qtum mempool. However, if you specify "start" and "end", "queryMempool" is ignored and is always false.
 
 If "queryMempoolOnly" is set as true (it is false by default), it will show *only* unconfirmed transactions from mempool.
 
@@ -290,7 +288,7 @@ The `summary` will have the format (values are in satoshis):
 
 
 ## Events
-The Bitcoin Service exposes two events via the Bus, and there are a few events that can be directly registered:
+The Qtum Service exposes two events via the Bus, and there are a few events that can be directly registered:
 
 ```js
 node.services.qtumd.on('tip', function(blockHash) {

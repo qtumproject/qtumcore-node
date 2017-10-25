@@ -87,7 +87,7 @@ describe('#start', function() {
       services[0].name.should.equal('local');
       services[0].module.should.equal(LocalService);
     });
-    it('will require a local module with "bitcoreNode" in package.json', function() {
+    it('will require a local module with "qtumcoreNode" in package.json', function() {
       function LocalService() {}
       LocalService.dependencies = [];
       LocalService.prototype.start = sinon.stub();
@@ -99,9 +99,9 @@ describe('#start', function() {
         } else if (p === 'local/package.json') {
           return {
             name: 'local',
-            bitcoreNode: 'lib/bitcoreNode.js'
+            qtumcoreNode: 'lib/qtumcoreNode.js'
           };
-        } else if (p === 'local/lib/bitcoreNode.js') {
+        } else if (p === 'local/lib/qtumcoreNode.js') {
           return LocalService;
         }
       };
@@ -118,7 +118,7 @@ describe('#start', function() {
         return internal;
       };
       var config = {
-        services: ['bitcoind']
+        services: ['qtumd']
       };
       (function() {
         setupServices(testRequire, cwd, config);

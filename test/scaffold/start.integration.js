@@ -3,7 +3,7 @@
 var should = require('chai').should();
 var sinon = require('sinon');
 var proxyquire = require('proxyquire');
-var BitcoinService = require('../../lib/services/bitcoind');
+var BitcoinService = require('../../lib/services/qtumd');
 var index = require('../../lib');
 var log = index.log;
 
@@ -23,7 +23,7 @@ describe('#start', function() {
       var node;
       var TestNode = function(options) {
         options.services[0].should.deep.equal({
-          name: 'bitcoind',
+          name: 'qtumd',
           module: BitcoinService,
           config: {
             spawn: {
@@ -48,10 +48,10 @@ describe('#start', function() {
         path: __dirname,
         config: {
           services: [
-            'bitcoind'
+            'qtumd'
           ],
           servicesConfig: {
-            bitcoind: {
+            qtumd: {
               spawn: {
                 datadir: './data'
               }
@@ -91,7 +91,7 @@ describe('#start', function() {
       var node;
       var TestNode = function(options) {
         options.services[0].should.deep.equal({
-          name: 'bitcoind',
+          name: 'qtumd',
           module: BitcoinService,
           config: {
             param: 'test',
@@ -116,10 +116,10 @@ describe('#start', function() {
         path: __dirname,
         config: {
           services: [
-            'bitcoind'
+            'qtumd'
           ],
           servicesConfig: {
-            'bitcoind': {
+            'qtumd': {
               param: 'test',
               spawn: {
                 datadir: './data'

@@ -71,7 +71,7 @@ describe('#create', function() {
       should.equal(fs.existsSync(packagePath), true);
 
       var config = JSON.parse(fs.readFileSync(configPath));
-      config.services.should.deep.equal(['bitcoind', 'db', 'address', 'web']);
+      config.services.should.deep.equal(['qtumd', 'db', 'address', 'web']);
       config.datadir.should.equal('./data');
       config.network.should.equal('livenet');
 

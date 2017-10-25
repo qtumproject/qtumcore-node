@@ -19,11 +19,11 @@ var Bitcoin = index.services.Bitcoin;
 var Node = index.Node;
 
 var configuration = {
-  datadir: '/home/user/.bitcoin',
+  datadir: '/home/user/.qtum',
   network: 'testnet',
   services: [
     {
-      name: 'bitcoind',
+      name: 'qtumd',
       module: Bitcoin,
       config: {}
     }

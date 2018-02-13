@@ -27,8 +27,8 @@
   ],
   "dependencies": {
     "async": "^1.3.0",
-    "qtumd-rpc": "git://git@github.com:qtumproject/qtumd-rpc.git",
-    "qtumcore-lib": "git://git@github.com:qtumproject/qtumcore-lib.git#master",
+    "qtumd-rpc": "https://github.com/qtumproject/qtumd-rpc.git#master",
+    "qtumcore-lib": "https://github.com/qtumproject/qtumcore-lib.git#master",
     "bitcore-lib": "^0.13.13",
     "body-parser": "^1.13.3",
     "colors": "^1.1.2",

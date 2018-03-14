@@ -2,7 +2,7 @@
   "name": "qtumcore-node",
   "description": "Full node with extended capabilities using Qtumcore and Qtumcoin Core",
   "author": "QTUM <foundation@qtum.org>",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "main": "./index.js",
   "repository": "https://github.com/qtumproject/qtumcore-node.git",
   "homepage": "https://github.com/qtumproject/qtumcore-node",

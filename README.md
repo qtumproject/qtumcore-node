@@ -33,20 +33,20 @@ A QTUM full node for building applications and services with Node.js. A node is 
 
     ```json
     {
-  		"network": "livenet",
-  		"port": 3001,
-  		"services": [
-   			"qtumd",
-    		"web"
-  		],
-  		"servicesConfig": {
-    		"qtumd": {
-    		  "spawn": {
-    		    "datadir": "/home/user/.qtum",
-    		    "exec": "/home/user/qtum-bitcore/src/qtumd"
-    		  }
-    		}
-  		}		
+      "network": "livenet",
+      "port": 3001,
+      "services": [
+	    "qtumd",
+        "web"
+      ],
+      "servicesConfig": {
+        "qtumd": {
+          "spawn": {
+            "datadir": "/home/user/.qtum",
+            "exec": "/home/user/qtum-bitcore/src/qtumd"
+          }
+        }
+      }
 	}
     ```  
 6. Edit qtum.conf  

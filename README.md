@@ -33,52 +33,21 @@ A QTUM full node for building applications and services with Node.js. A node is 
 
     ```json
     {
-      "network": "livenet",
-      "port": 3001,
-      "services": [
-        "qtumd",
-        "qtum-insight-api",
-        "qtum-explorer",
-        "web"
-      ],
-      "servicesConfig": {
-        "qtum-explorer": {
-          "apiPrefix": "qtum-insight-api",
-          "routePrefix": "qtum-explorer",
-          "nodemapLink": "https://qtum.org/en/nodemap"
-       },
-       "qtum-insight-api": {
-         "routePrefix": "qtum-insight-api",
-         "rateLimiterOptions": {
-           "whitelist": [
-             "123.456.12.34",
-             "::ffff:123.456.12.34"
-           ],
-           "whitelistLimit": 9999999,
-           "limit": 200,
-           "interval": 60000,
-           "banInterval": 3600000
-         },
-          "db": {
-            "host": "127.0.0.1",
-            "port": "27017",
-            "database": "qtum-api-livenet",
-            "user": "",
-            "password": ""
-         },
-          "erc20": {
-            "updateFromBlockHeight": 0
-          }
-        },
-        "qtumd": {
-          "spawn": {
-            "datadir": "/home/user/.qtum",
-           "exec": "/home/user/qtum-bitcore/src/qtumd"
-          }
-        }
-      }
-    }
-
+  		"network": "livenet",
+  		"port": 3001,
+  		"services": [
+   			"qtumd",
+    		"web"
+  		],
+  		"servicesConfig": {
+    		"qtumd": {
+    		  "spawn": {
+    		    "datadir": "/home/user/.qtum",
+    		    "exec": "/home/user/qtum-bitcore/src/qtumd"
+    		  }
+    		}
+  		}		
+	}
     ```  
 6. Edit qtum.conf  
 

@@ -28,8 +28,6 @@ A QTUM full node for building applications and services with Node.js. A node is 
 
     cd mynode
 
-    $(npm bin)/qtumcore-node install https://github.com/qtumproject/insight-api.git#master
-    $(npm bin)/qtumcore-node install https://github.com/qtumproject/qtum-explorer.git#master
     ```  
 5. Edit qtumcore-node.json  
 
@@ -107,9 +105,6 @@ A QTUM full node for building applications and services with Node.js. A node is 
     ```
     $(npm bin)/qtumcore-node start
     ```  
-
-8. Open a web browser to `http://localhost:3001/qtum-explorer` or `http://localhost:3001/qtum-insight-api`  
-
 
 ## Add-on Services
 

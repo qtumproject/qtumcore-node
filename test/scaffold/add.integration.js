@@ -25,7 +25,7 @@ describe('#add', function() {
         throw err;
       }
       fs.writeFile(
-        testDir + '/s0/s1/bitcore-node.json',
+        testDir + '/s0/s1/qtumcore-node.json',
         JSON.stringify(startConfig),
         function(err) {
           if (err) {
@@ -79,7 +79,7 @@ describe('#add', function() {
           spawn: spawn
         }
       });
-
+      
       addtest({
         path: path.resolve(testDir, 's0/s1/'),
         services: ['a', 'b', 'c']
@@ -90,12 +90,12 @@ describe('#add', function() {
       });
     });
 
-    it('will update bitcore-node.json services', function(done) {
+    it('will update qtumcore-node.json services', function(done) {
       var callCount = 0;
       var oldPackage = {
         dependencies: {
-          'bitcore-lib': '^v0.13.7',
-          'bitcore-node': '^v0.2.0'
+          'qtumcore-lib': '^v0.13.7',
+          'qtumcore-node': '^v0.2.0'
         }
       };
       var spawn = sinon.stub().returns({
@@ -130,7 +130,7 @@ describe('#add', function() {
         services: ['a', 'b', 'c']
       }, function(err) {
         should.not.exist(err);
-        var configPath = path.resolve(testDir, 's0/s1/bitcore-node.json');
+        var configPath = path.resolve(testDir, 's0/s1/qtumcore-node.json');
         var config = JSON.parse(fs.readFileSync(configPath));
         config.services.should.deep.equal(['a','b','c']);
         done();

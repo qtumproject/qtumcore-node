@@ -4,9 +4,9 @@ var should = require('chai').should();
 
 describe('Index Exports', function() {
   it('will export qtumcore-lib', function() {
-    var bitcore = require('../');
-    should.exist(bitcore.lib);
-    should.exist(bitcore.lib.Transaction);
-    should.exist(bitcore.lib.Block);
+    var qtumcore = require('../');
+    should.exist(qtumcore.lib);
+    should.exist(qtumcore.lib.Transaction);
+    should.exist(qtumcore.lib.Block);
   });
 });

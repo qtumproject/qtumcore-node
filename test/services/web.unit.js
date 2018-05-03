@@ -49,6 +49,12 @@ describe('WebService', function() {
     it('will set configuration options for max payload', function() {
       var web = new WebService({node: defaultNode, jsonRequestLimit: '200kb'});
       web.jsonRequestLimit.should.equal('200kb');
+      web.port.should.equal(3456);
+    });
+    it('will set port', function() {
+      var web = new WebService({node: defaultNode, jsonRequestLimit: '200kb', port: 3000});
+      web.jsonRequestLimit.should.equal('200kb');
+      web.port.should.equal(3000);
     });
   });
 
@@ -75,6 +81,7 @@ describe('WebService', function() {
       web.transformHttpsOptions = sinon.spy();
       web.start(function(err) {
         should.not.exist(err);
+        web.transformHttpsOptions.callCount.should.equal(1);
         httpsStub.createServer.called.should.equal(true);
         done();
       });
@@ -103,10 +110,13 @@ describe('WebService', function() {
         }
       });
       var web = new TestWebService({node: node});
+      sinon.spy(web, 'transformHttpsOptions');
       web.start(function(err) {
         if (err) {
           return done(err);
         }
+        // no https
+        web.transformHttpsOptions.callCount.should.equal(0);
         jsonStub.callCount.should.equal(1);
         jsonStub.args[0][0].limit.should.equal('100kb');
         done();
@@ -177,15 +187,15 @@ describe('WebService', function() {
       };
 
       var module1 = new Module1();
-
+      var getAllAPIMethods = sinon.stub().returns(module1.getAPIMethods());
       var node = {
         on: sinon.spy(),
-        getAllAPIMethods: sinon.stub().returns(module1.getAPIMethods())
+        getAllAPIMethods: getAllAPIMethods
       };
 
       var web = new WebService({node: node});
       web.createMethodsMap();
-
+      getAllAPIMethods.callCount.should.equal(1);
       Object.keys(web.methodsMap).length.should.equal(2);
       web.methodsMap.one.args.should.equal(1);
       web.methodsMap.two.args.should.equal(2);
@@ -215,14 +225,15 @@ describe('WebService', function() {
       };
 
       var module1 = new Module1();
+      var getAllPublishEvents = sinon.stub().returns(module1.getPublishEvents());
       var node = {
         on: sinon.spy(),
-        getAllPublishEvents: sinon.stub().returns(module1.getPublishEvents())
+        getAllPublishEvents: getAllPublishEvents
       };
 
       var web = new WebService({node: node});
       var events = web.getEventNames();
-
+      getAllPublishEvents.callCount.should.equal(1);
       events.should.deep.equal(['event1', 'event2']);
     });
 
@@ -345,6 +356,7 @@ describe('WebService', function() {
 
     it('on subscribe should call bus.subscribe', function(done) {
       bus.subscribe = function(param1) {
+        log.info.callCount.should.equal(1);
         param1.should.equal('data');
         done();
       };
@@ -355,6 +367,7 @@ describe('WebService', function() {
     it('on unsubscribe should call bus.unsubscribe', function(done) {
       bus.unsubscribe = function(param1) {
         param1.should.equal('data');
+        log.info.callCount.should.equal(1);
         done();
       };
 

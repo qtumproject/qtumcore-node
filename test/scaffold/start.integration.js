@@ -3,7 +3,7 @@
 var should = require('chai').should();
 var sinon = require('sinon');
 var proxyquire = require('proxyquire');
-var BitcoinService = require('../../lib/services/qtumd');
+var QtumService = require('../../lib/services/qtumd');
 var index = require('../../lib');
 var log = index.log;
 
@@ -19,12 +19,12 @@ describe('#start', function() {
 
   describe('will dynamically create a node from a configuration', function() {
 
-    it('require each bitcore-node service with default config', function(done) {
+    it('require each qtumcore-node service with default config', function(done) {
       var node;
       var TestNode = function(options) {
         options.services[0].should.deep.equal({
           name: 'qtumd',
-          module: BitcoinService,
+          module: QtumService,
           config: {
             spawn: {
               datadir: './data'
@@ -87,12 +87,12 @@ describe('#start', function() {
         done();
       });
     });
-    it('require each bitcore-node service with explicit config', function(done) {
+    it('require each qtumcore-node service with explicit config', function(done) {
       var node;
       var TestNode = function(options) {
         options.services[0].should.deep.equal({
           name: 'qtumd',
-          module: BitcoinService,
+          module: QtumService,
           config: {
             param: 'test',
             spawn: {

@@ -14,7 +14,7 @@ describe('#defaultBaseConfig', function() {
     info.config.port.should.equal(3001);
     info.config.services.should.deep.equal(['qtumd', 'web']);
     var qtumd = info.config.servicesConfig.qtumd;
-    qtumd.spawn.datadir.should.equal(home + '/.bitcoin');
+    qtumd.spawn.datadir.should.equal(home + '/.qtum');
     qtumd.spawn.exec.should.equal(path.resolve(__dirname, '../../bin/qtumd'));
   });
   it('be able to specify a network', function() {

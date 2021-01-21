@@ -38,7 +38,7 @@
     "qtumcore-lib": "https://github.com/qtumproject/qtumcore-lib.git#master",
     "qtumd-rpc": "https://github.com/qtumproject/qtumd-rpc.git#master",
     "semver": "^5.0.1",
-    "socket.io": "^1.4.5",
+    "socket.io": "^2.4.0",
     "socket.io-client": "^1.4.5",
     "zmq": "^2.14.0"
   },
